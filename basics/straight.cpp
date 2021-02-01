@@ -8,15 +8,17 @@ int main()
   LCDPrintf("Hello from EyeBot!");
   LCDMenu("DONE", "BYE", "EXIT", "OUT");
   KEYWait(ANYKEY);
+  
+  while(PSDGet(PSD_FRONT) > 200) {
+    // print distance to console
+    // std::cout << PSDGet(PSD_FRONT) << std::endl;
+    LCDPrintf("%d \n", PSDGet(PSD_FRONT));
+    VWSetSpeed(100, 0);
+  };
 
-  for (int i = 0; i < 4; i += 1)
-  {
-    VWStraight(400, 300);
-    VWWait();
-    VWTurn(90, 90);
-    VWWait();
-  }
-
+  // stop
+  VWSetSpeed(0, 0);
+  
   std::cout << "Ending simulation." << std::endl;
 
   return 0;
